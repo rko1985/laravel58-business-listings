@@ -18,10 +18,19 @@
                     <table class="table table-striped">
                         <tr>
                             <th>Company</th>
+                            <th></th>
                         </tr>
                         @foreach ($listings as $listing)
                             <tr>
                                 <td>{{ $listing->name }}</td>
+                                <td>
+                                    <form action="/listings/{{$listing->id}}" method="POST" class="float-right ml-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <a href="/listings/{{$listing->id}}/edit" class="btn btn-info">Edit</a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
